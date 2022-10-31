@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!-- links to the css used to style the page tailwind css was used to assist in writing the css -->
+    <link rel="stylesheet" href="css/output.css">
+</head>
+<body>
+    <!-- div for the background image that spans the full page and splits it into 2 columns -->
+    <div class="bg-[url('../images/background.jpg')] w-full h-screen bg-cover bg-center flex justify-evenly items-center">
+        <!-- first column on the page that holds the form for the data input -->
+        <div class="bg-black bg-opacity-50 rounded-lg px-6 py-4 w-52">
+            <form id="myForm" class="flex flex-col text-white">
+                <label for="x1">X Start</label> 
+                <input id="x1" class="my-2 bg-transparent border-b-2 rounded-md text-purple-300" placeholder="-50 to 50" type="number" min="-50" max="50" required/>
+
+                <label for="x2" class="my-2">X End</label> 
+                <input id="x2" class="mb-2 bg-transparent border-b-2 rounded-md text-purple-300" placeholder="-50 to 50" type="number" min="-50" max="50" required/>
+
+                <label for="y1" class="my-2">Y Start</label> 
+                <input id="y1" class="mb-2 bg-transparent border-b-2 rounded-md text-purple-300" placeholder="-50 to 50" type="number" min="-50" max="50" required/>
+
+                <label for="y2" class="my-2">Y End</label> 
+                <input id="y2" class="bg-transparent border-b-2 rounded-md text-purple-300" placeholder="-50 to 50" type="number" min="-50" max="50" required/>       
+
+                <p id="errors" class="text-red-500 mt-5 text-sm text-center hidden">Error Field</p>
+
+                <input type="submit" value="Submit" class="mt-5 border-2 rounded-lg hover:border-purple-300 hover:text-purple-300 cursor-pointer">
+            </form>
+        </div>
+        <!-- second column that holds the dynamically generated multiplication table -->
+        <div id="unhide" class="bg-black bg-opacity-50 rounded-lg px-6 py-4 hidden max-w-[800px] max-h-[600px] overflow-auto">
+            <p class="text-xl font-bold text-white mb-3 text-center">Multiplication Table</p>
+            <table id="table" class="text-white mx-auto">
+
+            </table>
+        </div>
+    </div>
+
+    <!-- imports the js needed for the multiplication table -->
+    <script src="js/scripts.js"></script>
+</body>
+</html>
