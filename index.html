@@ -1,40 +1,61 @@
+<!--
+GUI Assignment: HW4
+Gabriel Vega, UMass Lowell Computer Science, gabriel_vega@student.uml.edu
+-->
+
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <!-- links to the css used to style the page tailwind css was used to assist in writing the css -->
     <link rel="stylesheet" href="css/output.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
+    <link href="https://code.jquery.com/ui/1.13.2/themes/eggplant/jquery-ui.css" rel="stylesheet">
 </head>
 <body>
-    <!-- div for the background image that spans the full page and splits it into 2 columns -->
-    <div class="bg-[url('../images/background.jpg')] w-full h-screen bg-cover bg-center flex justify-evenly items-center">
-        <!-- first column on the page that holds the form for the data input -->
-        <div class="bg-black bg-opacity-50 rounded-lg px-6 py-4 w-52">
-            <form id="myForm" class="flex flex-col text-white">
-                <label for="x1">X Start</label> 
-                <input id="x1" class="my-2 bg-transparent border-b-2 rounded-md text-purple-300" placeholder="-50 to 50" type="number" min="-50" max="50" required/>
+    <!-- div that sets up the tabbed interface -->
+    <div id="myTabs">
+        <!-- list with all the tabs that gets displayed on the top bar-->
+        <ul>
+            <li><a href="#gen">Generate Table</a></li>
+        </ul>
 
-                <label for="x2" class="my-2">X End</label> 
-                <input id="x2" class="mb-2 bg-transparent border-b-2 rounded-md text-purple-300" placeholder="-50 to 50" type="number" min="-50" max="50" required/>
+        <!-- Content for the tab that generates the tables  -->
+        <div id="gen" class="bg-[url('../images/background.jpg')] w-full h-screen bg-cover bg-center flex justify-evenly items-center">
+            <div class="bg-black bg-opacity-50 rounded-lg px-6 py-4 w-52">
+                <!-- form that gets input for generating the multiplicatoin table -->
+                <form id="myForm" class="flex flex-col text-white">
+                    <label for="x1">X Start</label> 
+                    <input id="x1" name="x1" class="my-2 bg-transparent border-b-2 rounded-md text-purple-300" placeholder="-50 to 50" />
+                    <!-- slider that gets doubly bound to the input field -->
+                    <div id="x1Slider"></div>
 
-                <label for="y1" class="my-2">Y Start</label> 
-                <input id="y1" class="mb-2 bg-transparent border-b-2 rounded-md text-purple-300" placeholder="-50 to 50" type="number" min="-50" max="50" required/>
+                    <label for="x2" class="my-2">X End</label> 
+                    <input id="x2" name="x2" class="mb-2 bg-transparent border-b-2 rounded-md text-purple-300" placeholder="-50 to 50" />
+                    <div id="x2Slider"></div>
 
-                <label for="y2" class="my-2">Y End</label> 
-                <input id="y2" class="bg-transparent border-b-2 rounded-md text-purple-300" placeholder="-50 to 50" type="number" min="-50" max="50" required/>       
+                    <label for="y1" class="my-2">Y Start</label> 
+                    <input id="y1" name="y1" class="mb-2 bg-transparent border-b-2 rounded-md text-purple-300" placeholder="-50 to 50" />
+                    <div id="y1Slider"></div>
 
-                <p id="errors" class="text-red-500 mt-5 text-sm text-center hidden">Error Field</p>
+                    <label for="y2" class="my-2">Y End</label> 
+                    <input id="y2" name="y2" class="bg-transparent border-b-2 rounded-md text-purple-300" placeholder="-50 to 50" />
+                    <div id="y2Slider"></div>       
+                </form>
+            </div>
+            <div class="bg-black bg-opacity-50 rounded-lg px-6 py-4 w-52">
+                <!-- form that gets input for deleting one or more tabs -->
+                <form id="deleteForm" class="flex flex-col text-white mt-5">
+                    <label for="delete">Enter the index or indicies of the tab(s) you wish to delete</label> 
+                    <input id="delete" name="delete" class="my-2 bg-transparent border-b-2 rounded-md text-purple-300" placeholder="1 or 1,2,3" />
 
-                <input type="submit" value="Submit" class="mt-5 border-2 rounded-lg hover:border-purple-300 hover:text-purple-300 cursor-pointer">
-            </form>
+                    <input type="submit" value="Submit" class="mt-5 border-2 rounded-lg hover:border-purple-300 hover:text-purple-300 cursor-pointer">
+                </form>
+            </div>
         </div>
-        <!-- second column that holds the dynamically generated multiplication table -->
-        <div id="unhide" class="bg-black bg-opacity-50 rounded-lg px-6 py-4 hidden max-w-[800px] max-h-[600px] overflow-auto">
-            <p class="text-xl font-bold text-white mb-3 text-center">Multiplication Table</p>
-            <table id="table" class="text-white mx-auto">
-
-            </table>
-        </div>
+        
     </div>
 
     <!-- imports the js needed for the multiplication table -->
